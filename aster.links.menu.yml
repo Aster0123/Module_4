@@ -1,0 +1,5 @@
+aster.module:
+  title: 'Final module'
+  parent: system.admin_structure
+  route_name: aster.attestation
+  weight: 50

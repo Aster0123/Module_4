@@ -1,0 +1,4 @@
+aster_library:
+  css:
+    theme:
+      css/style.css: {}

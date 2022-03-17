@@ -1,0 +1,7 @@
+aster.attestation:
+  path: '/aster'
+  defaults:
+    _title: 'Final module'
+    _form: 'Drupal\aster\Form\AsterForm'
+  requirements:
+    _permission: 'access content'
