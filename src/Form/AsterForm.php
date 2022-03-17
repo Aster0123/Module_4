@@ -197,9 +197,9 @@ class AsterForm extends FormBase {
     // Go through rows.
     for ($i = $this->rows; $i >= 0; $i--) {
       // Go through rows' values.
-      foreach ($valueTableCell[$i] as $key => $valuess) {
+      foreach ($valueTableCell[$i] as $key => $active_cells) {
         if (!array_key_exists($key, $inactive_cells)) {
-          $values[] = $valuess;
+          $values[] = $active_cells;
         }
       }
     }
@@ -209,8 +209,8 @@ class AsterForm extends FormBase {
   /**
    * Function that checks if value is not empty.
    */
-  public function notEmpty($valuess): bool {
-    return ($valuess || $valuess == '0');
+  public function notEmpty($active_cells): bool {
+    return ($active_cells || $active_cells == '0');
   }
 
   /**
@@ -232,7 +232,7 @@ class AsterForm extends FormBase {
       // An array in which are saved and sorted values from the tables.
       $active_values[] = $cell_values;
       //Go through cells.
-      foreach ($cell_values as $key => $valuess) {
+      foreach ($cell_values as $key => $active_cells) {
         // Comparing cells in the tables.
         for ($table_cell = 0; $table_cell <= count($active_values[$i]) - 1; $table_cell++) {
           if ($this->notEmpty($active_values[0][$table_cell]) !== $this->notEmpty($active_values[$i][$table_cell])) {
@@ -240,7 +240,7 @@ class AsterForm extends FormBase {
           }
         }
         // Value of the start point of the key if the cell is not empty.
-        if (!empty($valuess)) {
+        if (!empty($active_cells)) {
           $start_point = $key;
           break;
         }
@@ -292,8 +292,7 @@ class AsterForm extends FormBase {
         $form_state->setValue($my_cell . 'ytd', $ytd);
       }
     }
-    \Drupal::messenger()
-      ->addStatus(t('Valid'));
+    $this->messenger()->addStatus('Valid');
     $form_state->setRebuild();
   }
 
